@@ -3,6 +3,7 @@ import firebase from '../../../firebase';
 import 'firebase/database';
 
 import './User.css';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import FakeWrapper from '../../hoc/fakeWrapper';
 import Logo from '../../components/User/Logo/Logo';
 import Shop from '../../components/User/Shop/Shop';
@@ -10,8 +11,10 @@ import PlaceOrder from '../../components/User/PlaceOrder/PlaceOrder';
 
 class User extends Component {
   state = {
+    loading: true,
     shops: [],
     cart: [],
+    orderState: 1, // 1: Show Order Summary, 2: Show User Details. 3: Show Info Modal
     initialCartStateIndex: [],
     updatedCartStateIndex: []
   };
@@ -25,6 +28,7 @@ class User extends Component {
     shopsRef.once('value', snap => {
       const initialCartStateIndex = this.initializeCartStateIndex(snap.val());
       this.setState({
+        loading: false,
         shops: snap.val(),
         initialCartStateIndex: initialCartStateIndex,
         updatedCartStateIndex: initialCartStateIndex
@@ -82,11 +86,21 @@ class User extends Component {
     this.setState({ cart: cart });
   };
 
+  updateOrderStateHandler = val => {
+    this.setState((prevState, props) => ({
+      orderState: prevState.orderState + val
+    }));
+  };
+
   calculateTotal = () => {
     // this.cart.map()
   };
 
   render() {
+    // if (this.state.loading) {
+    //   return <Spinner />;
+    // }
+
     const shops = this.state.shops.map((shop, index) => (
       <Shop
         key={shop.name}
@@ -108,7 +122,12 @@ class User extends Component {
             <div className="r_cntr">{/* ... */}</div>
           </div>
         </div>
-        <PlaceOrder placeOrder={this.placeOrderHandler.bind(this)} />
+        <PlaceOrder
+          cart={this.state.cart}
+          orderState={this.state.orderState}
+          updateOrderState={this.updateOrderStateHandler}
+          placeOrder={this.placeOrderHandler.bind(this)}
+        />
       </FakeWrapper>
     );
   }

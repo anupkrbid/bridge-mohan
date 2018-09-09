@@ -8,6 +8,7 @@ const placeOrder = props => (
     <section className="button_wrp">
       <button
         type="button"
+        onClick={props.placeOrder}
         className="btn btn-primary order_btn"
         data-toggle="modal"
         data-target="#exampleModal"
@@ -15,7 +16,11 @@ const placeOrder = props => (
         Place Order
       </button>
     </section>
-    <Modal />
+    <Modal
+      cart={props.cart}
+      orderState={props.orderState}
+      updateOrderState={props.updateOrderState}
+    />
   </FakeWrapper>
 );
 
