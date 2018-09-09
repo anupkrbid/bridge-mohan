@@ -1,5 +1,138 @@
+@charset "utf-8";
+/* CSS Document */
+html,
 body {
-  margin: 0;
+  min-height: 100%;
   padding: 0;
-  font-family: sans-serif;
+  margin: 0;
+  font-family: 'Roboto Slab', serif;
+  color: #333;
+  font-size: 10px;
+}
+.flex_container {
+  width: 100%;
+  min-height: 100%;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  padding-bottom: 50px;
+}
+.flex_container .l_cntr {
+  width: 15%;
+  background: #2f6940;
+}
+.flex_container .r_cntr {
+  width: 15%;
+  background: #bb2030;
+}
+.flex_container .text_cntr {
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  position: relative;
+}
+.logo_wrp {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+.logo_wrp h1 {
+  font-size: 6rem;
+  font-weight: bold;
+}
+.menu_blk {
+  padding: 20px 50px;
+}
+.menu_blk h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  position: relative;
+  padding-bottom: 20px;
+}
+.menu_blk h2::after {
+  width: 100px;
+  height: 3px;
+  background: #2f6940;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -50px;
+  content: '';
+}
+.menu_row {
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+}
+.menu_ttl_txt {
+  font-size: 1.75rem;
+  width: 100%;
+}
+.menu_dsc {
+  font-size: 1.3rem;
+  width: 100%;
+}
+.button_wrp {
+  width: 100%;
+  background: #fff;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+}
+.order_btn {
+  background: #f47300;
+  color: #fff;
+  font-size: 1.75rem;
+  border: 0;
+  border-radius: 3px;
+  padding: 4px 10px;
+}
+.modal-title {
+  font-size: 2rem;
+}
+.modal-body .menu_blk {
+  padding: 10px;
+}
+.order_summery {
+  background: #f9f9f9;
+  border: #ccc 1px solid;
+  padding: 10px;
+}
+.modal-body .order_summery .menu_blk h2 {
+  font-size: 2rem;
+}
+.modal-body .user_details label {
+  font-size: 1.75rem;
+}
+.modal-body .user_details .form-control {
+  font-size: 1.5rem;
+  padding: 8px;
+  height: auto;
+}
+.cancel,
+.confirm {
+  font-size: 1.75rem;
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+  .menu_blk {
+    padding: 20px;
+  }
+  .flex_container .l_cntr,
+  .flex_container .r_cntr {
+    width: 5%;
+  }
+  .modal.fade.show {
+    padding-right: 0 !important;
+  }
 }
