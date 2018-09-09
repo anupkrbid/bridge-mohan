@@ -11,7 +11,10 @@ import PlaceOrder from '../../components/User/PlaceOrder/PlaceOrder';
 
 class User extends Component {
   state = {
-    shops: []
+    shops: [],
+    cart: [],
+    initialCartStateIndex: [],
+    updatedCartStateIndex: []
   };
 
   componentDidMount() {
@@ -21,14 +24,39 @@ class User extends Component {
       .child('shops');
 
     shopsRef.once('value', snap => {
-      console.log(snap.val());
-      this.setState({ shops: snap.val() });
+      const initialCartStateIndex = this.initializeCartStateIndex(snap.val());
+      this.setState({
+        shops: snap.val(),
+        initialCartStateIndex: initialCartStateIndex,
+        updatedCartStateIndex: initialCartStateIndex
+      });
     });
   }
 
+  initializeCartStateIndex = shops => {
+    return shops.map(shop => shop.products.map(product => false));
+  };
+
+  updatedCartStateIndexHandler = (event, shopIndex, productIndex) => {
+    const updatedCartStateIndex = [...this.state.updatedCartStateIndex];
+    const updatedCartStateIndexForSelectedShop = [
+      ...this.state.updatedCartStateIndex[shopIndex]
+    ];
+
+    updatedCartStateIndexForSelectedShop[productIndex] = event.target.checked;
+    updatedCartStateIndex[shopIndex] = updatedCartStateIndexForSelectedShop;
+
+    this.setState({ updatedCartStateIndex: updatedCartStateIndex });
+  };
+
   render() {
-    const shops = this.state.shops.map(shop => (
-      <Shop key={shop.name} shop={shop} />
+    const shops = this.state.shops.map((shop, index) => (
+      <Shop
+        key={shop.name}
+        shop={shop}
+        shopIndex={index}
+        updatedCartStateIndex={this.updatedCartStateIndexHandler.bind(this)}
+      />
     ));
 
     return (

@@ -6,7 +6,11 @@ import Menu from './Menu/Menu';
 const shop = props => (
   <section className="menu_blk">
     <h2>{props.shop.name}</h2>
-    <Menu products={props.shop.products} />
+    <Menu
+      shopIndex={props.shopIndex}
+      products={props.shop.products}
+      updatedCartStateIndex={props.updatedCartStateIndex}
+    />
   </section>
 );
 

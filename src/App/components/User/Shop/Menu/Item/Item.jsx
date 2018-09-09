@@ -5,7 +5,18 @@ import './Item.css';
 const item = props => (
   <div className="row menu_row">
     <div className="col-1 col-sm-1 col-md-1">
-      <input type="checkbox" aria-label="Checkbox for following text input" />
+      <input
+        type="checkbox"
+        onChange={event => {
+          event.persist();
+          props.updatedCartStateIndex(
+            event,
+            props.shopIndex,
+            props.productIndex
+          );
+        }}
+        aria-label={'Checkbox to to buy' + props.item.name}
+      />
     </div>
     <div className="col-7 col-sm-7 col-md-8">
       <h3 className="menu_ttl_txt">{props.item.name}</h3>
