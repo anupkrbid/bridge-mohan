@@ -8,10 +8,17 @@ const placeOrder = props => (
       <button
         type="button"
         className="btn btn-primary order_btn"
+        onClick={props.placeOrder}
+      >
+        Place Order
+      </button>
+      <button
+        type="button"
+        className="btn btn-primary order_btn"
         data-toggle="modal"
         data-target="#exampleModal"
       >
-        Place Order
+        Place Order jQuery
       </button>
     </section>
     {/* <!-- Modal --> */}

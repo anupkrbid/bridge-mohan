@@ -49,6 +49,44 @@ class User extends Component {
     this.setState({ updatedCartStateIndex: updatedCartStateIndex });
   };
 
+  placeOrderHandler = () => {
+    const cart = this.state.shops.map((shop, shopIndex) => {
+      const products = shop.products
+        .filter(
+          (product, productIndex) =>
+            this.state.updatedCartStateIndex[shopIndex][productIndex]
+        )
+        .map(product => ({
+          ...product,
+          quantity: 1
+        }));
+
+      if (!products.length) {
+        return {
+          shopName: shop.name,
+          products: [],
+          total: 0
+        };
+      }
+
+      const total = products
+        .map(product => product.price)
+        .reduce((accumulator, currentValue) => accumulator + currentValue);
+
+      return {
+        shopName: shop.name,
+        products: products,
+        total: total
+      };
+    });
+
+    this.setState({ cart: cart });
+  };
+
+  calculateTotal = () => {
+    // this.cart.map()
+  };
+
   render() {
     const shops = this.state.shops.map((shop, index) => (
       <Shop
@@ -71,7 +109,7 @@ class User extends Component {
             <div className="r_cntr">{/* ... */}</div>
           </div>
         </div>
-        <PlaceOrder />
+        <PlaceOrder placeOrder={this.placeOrderHandler.bind(this)} />
       </FakeWrapper>
     );
   }
