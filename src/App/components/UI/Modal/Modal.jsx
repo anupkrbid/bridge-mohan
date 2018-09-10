@@ -11,6 +11,7 @@ const modal = props => {
       <CheckoutSummary
         updateOrderState={props.updateOrderState}
         cart={props.cart}
+        updateCartState={props.updateCartState}
       />
     );
   } else if (props.orderState === 2) {

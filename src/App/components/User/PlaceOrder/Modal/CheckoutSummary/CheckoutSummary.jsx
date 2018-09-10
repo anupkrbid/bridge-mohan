@@ -7,7 +7,14 @@ import FakeWrapper from '../../../../../hoc/fakeWrapper';
 const checkoutSummary = props => {
   const modelShops = props.cart
     .filter(shop => !!shop.products.length)
-    .map(shop => <ModalShop key={shop.shopName} shop={shop} />);
+    .map((shop, index) => (
+      <ModalShop
+        key={shop.shopName}
+        shopIndex={index}
+        shop={shop}
+        updateCartState={props.updateCartState}
+      />
+    ));
 
   let total = null;
   if (!!props.cart.length) {

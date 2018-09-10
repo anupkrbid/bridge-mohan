@@ -61,6 +61,7 @@ class User extends Component {
         )
         .map(product => ({
           ...product,
+          total: product.price,
           quantity: 1
         }));
 
@@ -73,7 +74,7 @@ class User extends Component {
       }
 
       const total = products
-        .map(product => product.price)
+        .map(product => product.total)
         .reduce((accumulator, currentValue) => accumulator + currentValue);
 
       return {
@@ -90,6 +91,27 @@ class User extends Component {
     this.setState((prevState, props) => ({
       orderState: prevState.orderState + val
     }));
+  };
+
+  updateCartStateHandler = (event, shopIndex, productIndex) => {
+    const updatedCartState = JSON.parse(JSON.stringify(this.state.cart));
+
+    const actualPrice =
+      updatedCartState[shopIndex].products[productIndex].price;
+
+    updatedCartState[shopIndex].products[productIndex].quantity =
+      event.target.selectedOptions[0].value;
+
+    updatedCartState[shopIndex].products[productIndex].total =
+      actualPrice * event.target.selectedOptions[0].value;
+
+    const newTotal = updatedCartState[shopIndex].products
+      .map(product => product.total)
+      .reduce((accumulator, currentValue) => accumulator + currentValue);
+
+    updatedCartState[shopIndex].total = newTotal;
+
+    this.setState({ cart: updatedCartState });
   };
 
   calculateTotal = () => {
@@ -127,6 +149,7 @@ class User extends Component {
           orderState={this.state.orderState}
           updateOrderState={this.updateOrderStateHandler}
           placeOrder={this.placeOrderHandler.bind(this)}
+          updateCartState={this.updateCartStateHandler.bind(this)}
         />
       </FakeWrapper>
     );

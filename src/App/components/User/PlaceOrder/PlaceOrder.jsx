@@ -20,6 +20,7 @@ const placeOrder = props => (
       cart={props.cart}
       orderState={props.orderState}
       updateOrderState={props.updateOrderState}
+      updateCartState={props.updateCartState}
     />
   </FakeWrapper>
 );
