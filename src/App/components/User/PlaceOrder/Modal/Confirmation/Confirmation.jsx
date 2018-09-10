@@ -28,6 +28,7 @@ class Confirmation extends Component {
         this[`${shop.shopName.toLowerCase()}Ref`].push({
           user: this.props.user,
           orders: shop.products,
+          status: shop.status,
           total: shop.total
         });
       }
@@ -60,11 +61,17 @@ class Confirmation extends Component {
             <section className="menu_blk user_details">
               <div className="row menu_row">
                 <div className="col-md-12">
-                  <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
-                  <pre>{JSON.stringify(this.props.cart, null, 2)}</pre>
-                  <strong>
+                  <h2>
                     Please check your email after the page refreshes on submit
-                  </strong>
+                  </h2>
+                  <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
+                  <pre>
+                    {JSON.stringify(
+                      this.props.cart.filter(shop => !!shop.products.length),
+                      null,
+                      2
+                    )}
+                  </pre>
                 </div>
               </div>
             </section>
@@ -84,7 +91,7 @@ class Confirmation extends Component {
             onClick={this.saveDataToDBHandler}
             className="btn btn-primary confirm"
           >
-            Confirm
+            Submit
           </button>
         </div>
       </FakeWrapper>

@@ -81,7 +81,8 @@ class User extends Component {
       return {
         shopName: shop.name,
         products: products,
-        total: total
+        total: total,
+        status: -1 // -1: Pemding. 0: Cancelled, 1: Confirmed
       };
     });
 
