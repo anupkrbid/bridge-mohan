@@ -13,9 +13,9 @@ class Confirmation extends Component {
       .ref()
       .child('orders');
 
-    this.ordersRef.on('child_added', snap => {
-      window.location.reload();
-    });
+    // this.ordersRef.on('child_added', snap => {
+    //   window.location.reload();
+    // });
 
     this.dhabewalaRef = this.ordersRef.child('dhabewala');
     this.paanwalaRef = this.ordersRef.child('paanwala');
@@ -32,6 +32,10 @@ class Confirmation extends Component {
         });
       }
     });
+    // TODO: Refactor this
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   render() {
