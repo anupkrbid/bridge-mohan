@@ -17,9 +17,11 @@ const placeOrder = props => (
       </button>
     </section>
     <Modal
+      user={props.user}
       cart={props.cart}
       orderState={props.orderState}
       updateOrderState={props.updateOrderState}
+      updateUser={props.updateUser}
       updateCartState={props.updateCartState}
     />
   </FakeWrapper>

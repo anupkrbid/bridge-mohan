@@ -64,7 +64,11 @@ const checkoutSummary = props => {
         >
           Cancel
         </button>
-        <button type="button" className="btn btn-primary confirm">
+        <button
+          type="button"
+          onClick={() => props.updateOrderState(1)}
+          className="btn btn-primary confirm"
+        >
           Confirm
         </button>
       </div>

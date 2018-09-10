@@ -3,7 +3,7 @@ import firebase from '../../../firebase';
 import 'firebase/database';
 
 import './User.css';
-import Spinner from '../../components/UI/Spinner/Spinner';
+// import Spinner from '../../components/UI/Spinner/Spinner';
 import FakeWrapper from '../../hoc/fakeWrapper';
 import Logo from '../../components/User/Logo/Logo';
 import Shop from '../../components/User/Shop/Shop';
@@ -13,6 +13,7 @@ class User extends Component {
   state = {
     loading: true,
     shops: [],
+    user: {},
     cart: [],
     orderState: 1, // 1: Show Order Summary, 2: Show User Details. 3: Show Info Modal
     initialCartStateIndex: [],
@@ -84,7 +85,10 @@ class User extends Component {
       };
     });
 
-    this.setState({ cart: cart });
+    this.setState({
+      cart: cart,
+      orderState: 1
+    });
   };
 
   updateOrderStateHandler = val => {
@@ -114,8 +118,10 @@ class User extends Component {
     this.setState({ cart: updatedCartState });
   };
 
-  calculateTotal = () => {
-    // this.cart.map()
+  updateUserHandler = event => {
+    const user = { ...this.state.user };
+    user[event.target.name] = event.target.value;
+    this.setState({ user: user });
   };
 
   render() {
@@ -145,9 +151,11 @@ class User extends Component {
           </div>
         </div>
         <PlaceOrder
+          user={this.state.user}
           cart={this.state.cart}
           orderState={this.state.orderState}
           updateOrderState={this.updateOrderStateHandler}
+          updateUser={this.updateUserHandler.bind(this)}
           placeOrder={this.placeOrderHandler.bind(this)}
           updateCartState={this.updateCartStateHandler.bind(this)}
         />

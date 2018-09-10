@@ -3,6 +3,7 @@ import React from 'react';
 import './Modal.css';
 import CheckoutSummary from '../../User/PlaceOrder/Modal/CheckoutSummary/CheckoutSummary';
 import UserDetails from '../../User/PlaceOrder/Modal/UserDetails/UserDetails';
+import ConformOrder from '../../User/PlaceOrder/Modal/Confirmation/Confirmation';
 
 const modal = props => {
   let modalContent = null;
@@ -15,8 +16,16 @@ const modal = props => {
       />
     );
   } else if (props.orderState === 2) {
-    modalContent = <UserDetails updateOrderState={props.updateOrderState} />;
+    modalContent = (
+      <UserDetails
+        updateOrderState={props.updateOrderState}
+        updateUser={props.updateUser}
+      />
+    );
+  } else if (props.orderState === 3) {
+    modalContent = <ConformOrder cart={props.cart} user={props.user} />;
   }
+
   return (
     <div
       className="modal fade"

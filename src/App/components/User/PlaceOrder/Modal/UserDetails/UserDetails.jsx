@@ -26,22 +26,46 @@ const userDetails = props => (
             <div className="col-md-12">
               <form>
                 <div className="form-group">
-                  <label htmlFor="exampleInputEmail1">Full Name</label>
+                  <label htmlFor="name">Full Name</label>
                   <input
-                    type="name"
+                    type="text"
+                    onInput={event => {
+                      event.persist();
+                      props.updateUser(event);
+                    }}
+                    name="fullName"
                     className="form-control"
-                    id="exampleInputEmail1"
+                    id="name"
                     aria-describedby="emailHelp"
-                    placeholder="Full Name"
+                    placeholder="Bridge Mohan"
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="exampleInputPassword1">Phone Number</label>
+                  <label htmlFor="pno">Phone Number</label>
                   <input
                     type="text"
+                    onInput={event => {
+                      event.persist();
+                      props.updateUser(event);
+                    }}
+                    name="phoneNo"
                     className="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Phone Number"
+                    id="pno"
+                    placeholder="+919845623698"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="text"
+                    onInput={event => {
+                      event.persist();
+                      props.updateUser(event);
+                    }}
+                    name="email"
+                    className="form-control"
+                    id="email"
+                    placeholder="bridge.mohan@learningmate.com"
                   />
                 </div>
               </form>
@@ -59,7 +83,11 @@ const userDetails = props => (
       >
         Cancel
       </button>
-      <button type="button" className="btn btn-primary confirm">
+      <button
+        type="button"
+        onClick={() => props.updateOrderState(1)}
+        className="btn btn-primary confirm"
+      >
         Confirm
       </button>
     </div>
