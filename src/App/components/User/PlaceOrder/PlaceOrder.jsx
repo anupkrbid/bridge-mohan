@@ -9,6 +9,7 @@ const placeOrder = props => (
       <button
         type="button"
         onClick={props.placeOrder}
+        disabled={props.disablePlaceOrderButton}
         className="btn btn-primary order_btn"
         data-toggle="modal"
         data-target="#exampleModal"

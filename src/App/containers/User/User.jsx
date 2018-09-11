@@ -130,6 +130,10 @@ class User extends Component {
       return <Spinner />;
     }
 
+    let showPlaceOrderButton = this.state.updatedCartStateIndex
+      .map(array => array.reduce((acc, cur) => acc || cur))
+      .reduce((acc, cur) => acc || cur);
+
     const shops = this.state.shops.map((shop, index) => (
       <Shop
         key={shop.name}
@@ -155,6 +159,7 @@ class User extends Component {
           user={this.state.user}
           cart={this.state.cart}
           orderState={this.state.orderState}
+          disablePlaceOrderButton={!showPlaceOrderButton}
           updateOrderState={this.updateOrderStateHandler}
           updateUser={this.updateUserHandler.bind(this)}
           placeOrder={this.placeOrderHandler.bind(this)}
