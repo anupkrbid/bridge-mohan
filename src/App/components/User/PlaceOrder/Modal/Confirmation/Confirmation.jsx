@@ -69,7 +69,7 @@ class Confirmation extends Component {
                     {JSON.stringify(
                       this.props.cart.filter(shop => !!shop.products.length),
                       null,
-                      2
+                      4
                     )}
                   </pre>
                 </div>

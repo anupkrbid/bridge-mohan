@@ -37,7 +37,7 @@ const userDetails = props => (
                     className="form-control"
                     id="name"
                     aria-describedby="emailHelp"
-                    placeholder="Bridge Mohan"
+                    placeholder="eg: Bridge Mohan"
                   />
                 </div>
                 <div className="form-group">
@@ -51,7 +51,7 @@ const userDetails = props => (
                     name="phoneNo"
                     className="form-control"
                     id="pno"
-                    placeholder="+919845623698"
+                    placeholder="eg: +919845623698"
                   />
                 </div>
                 <div className="form-group">
@@ -65,7 +65,7 @@ const userDetails = props => (
                     name="email"
                     className="form-control"
                     id="email"
-                    placeholder="bridge.mohan@learningmate.com"
+                    placeholder="eg: bridge.mohan@learningmate.com"
                   />
                 </div>
               </form>
