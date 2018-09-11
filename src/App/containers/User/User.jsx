@@ -3,7 +3,7 @@ import firebase from '../../../firebase';
 import 'firebase/database';
 
 import './User.css';
-// import Spinner from '../../components/UI/Spinner/Spinner';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import FakeWrapper from '../../hoc/fakeWrapper';
 import Logo from '../../components/User/Logo/Logo';
 import Shop from '../../components/User/Shop/Shop';
@@ -126,9 +126,9 @@ class User extends Component {
   };
 
   render() {
-    // if (this.state.loading) {
-    //   return <Spinner />;
-    // }
+    if (this.state.loading) {
+      return <Spinner />;
+    }
 
     const shops = this.state.shops.map((shop, index) => (
       <Shop
