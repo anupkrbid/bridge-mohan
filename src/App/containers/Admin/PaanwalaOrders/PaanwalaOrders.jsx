@@ -58,6 +58,40 @@ class PaanwalaOrders extends Component {
         tableRowClass = 'table-success';
       }
 
+      let updateStatusButton = null;
+      if (order.status === -1) {
+        updateStatusButton = (
+          <div className="btn-group" role="group">
+            <button
+              id="btnGroupDrop1"
+              type="button"
+              className="btn btn-secondary dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Update Status
+            </button>
+            <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <a
+                className="dropdown-item"
+                style={{ cursor: 'pointer' }}
+                onClick={this.updateOrderStateHandler.bind(this, 1, order.id)}
+              >
+                Confirm Order
+              </a>
+              <a
+                className="dropdown-item"
+                style={{ cursor: 'pointer' }}
+                onClick={this.updateOrderStateHandler.bind(this, 0, order.id)}
+              >
+                Cancel Order
+              </a>
+            </div>
+          </div>
+        );
+      }
+
       return (
         <tr key={order.id} className={tableRowClass}>
           <th scope="row">{order.id}</th>
@@ -78,42 +112,7 @@ class PaanwalaOrders extends Component {
                 Call
               </button>
 
-              <div className="btn-group" role="group">
-                <button
-                  id="btnGroupDrop1"
-                  type="button"
-                  className="btn btn-secondary dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Status Update
-                </button>
-                <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <a
-                    className="dropdown-item"
-                    style={{ cursor: 'pointer' }}
-                    onClick={this.updateOrderStateHandler.bind(
-                      this,
-                      1,
-                      order.id
-                    )}
-                  >
-                    Confirm Order
-                  </a>
-                  <a
-                    className="dropdown-item"
-                    style={{ cursor: 'pointer' }}
-                    onClick={this.updateOrderStateHandler.bind(
-                      this,
-                      0,
-                      order.id
-                    )}
-                  >
-                    Cancel Order
-                  </a>
-                </div>
-              </div>
+              {updateStatusButton}
             </div>
           </td>
         </tr>
