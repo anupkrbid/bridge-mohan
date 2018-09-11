@@ -8,6 +8,7 @@ const shop = props => (
     <h2>{props.shop.name}</h2>
     <Menu
       shopIndex={props.shopIndex}
+      shopName={props.shop.name}
       products={props.shop.products}
       updatedCartStateIndex={props.updatedCartStateIndex}
     />

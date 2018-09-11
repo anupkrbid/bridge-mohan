@@ -7,6 +7,10 @@ const item = props => (
     <div className="col-1 col-sm-1 col-md-1">
       <input
         type="checkbox"
+        style={{
+          display:
+            props.shopName.toLowerCase() === 'khilonewala' ? 'none' : 'block'
+        }}
         onChange={event => {
           event.persist();
           props.updatedCartStateIndex(

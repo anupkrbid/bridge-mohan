@@ -7,6 +7,7 @@ const menu = props => {
   const products = props.products.map((item, index) => (
     <Item
       key={item.name}
+      shopName={props.shopName}
       shopIndex={props.shopIndex}
       productIndex={index}
       item={item}
