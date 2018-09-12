@@ -61,7 +61,7 @@ class Confirmation extends Component {
           );
         });
         return (
-          <section key={shop.shopName} class="menu_blk">
+          <section key={shop.shopName} className="menu_blk">
             <h2>{shop.shopName}</h2>
             {productDetail}
             <div className="row menu_row">
@@ -100,13 +100,13 @@ class Confirmation extends Component {
             <section className="menu_blk user_details">
               <div className="row menu_row">
                 <div className="col-md-12">
-                  <div class="alert alert-primary" role="alert">
+                  <div className="alert alert-primary" role="alert">
                     <h2>
                       Please check your email after the page refreshes on submit
                     </h2>
                   </div>
 
-                  <section class="menu_blk">
+                  <section className="menu_blk">
                     <p>
                       Full Name: <strong>{this.props.user.fullName}</strong>
                     </p>

@@ -25,7 +25,10 @@ const userDetails = props => (
           <div className="row menu_row">
             <div className="col-md-12">
               <form>
-                <div className="form-group">
+                <div
+                  className={`form-group ${props.validation.fullName
+                    .isInvalid && 'has-error'}`}
+                >
                   <label htmlFor="name">Full Name</label>
                   <input
                     type="text"
@@ -39,8 +42,14 @@ const userDetails = props => (
                     aria-describedby="emailHelp"
                     placeholder="eg: Bridge Mohan"
                   />
+                  <span className="help-block">
+                    {props.validation.fullName.message}
+                  </span>
                 </div>
-                <div className="form-group">
+                <div
+                  className={`form-group ${props.validation.phoneNo.isInvalid &&
+                    'has-error'}`}
+                >
                   <label htmlFor="pno">Phone Number</label>
                   <input
                     type="text"
@@ -53,8 +62,14 @@ const userDetails = props => (
                     id="pno"
                     placeholder="eg: +919845623698"
                   />
+                  <span className="help-block">
+                    {props.validation.phoneNo.message}
+                  </span>
                 </div>
-                <div className="form-group">
+                <div
+                  className={`form-group ${props.validation.email.isInvalid &&
+                    'has-error'}`}
+                >
                   <label htmlFor="email">Email</label>
                   <input
                     type="text"
@@ -67,6 +82,9 @@ const userDetails = props => (
                     id="email"
                     placeholder="eg: bridge.mohan@learningmate.com"
                   />
+                  <span className="help-block">
+                    {props.validation.email.message}
+                  </span>
                 </div>
               </form>
             </div>

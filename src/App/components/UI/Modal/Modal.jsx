@@ -18,6 +18,7 @@ const modal = props => {
   } else if (props.orderState === 2) {
     modalContent = (
       <UserDetails
+        validation={props.validation}
         updateOrderState={props.updateOrderState}
         updateUser={props.updateUser}
       />

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../../../firebase';
 import 'firebase/database';
 
+import FormValidator from './FormValidator';
 import './User.css';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import FakeWrapper from '../../hoc/fakeWrapper';
@@ -10,10 +11,51 @@ import Shop from '../../components/User/Shop/Shop';
 import PlaceOrder from '../../components/User/PlaceOrder/PlaceOrder';
 
 class User extends Component {
+  submitted = false;
+  validator = new FormValidator([
+    {
+      field: 'email',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'Email is required.'
+    },
+    {
+      field: 'email',
+      method: 'isEmail',
+      validWhen: true,
+      message: 'That is not a valid email.'
+    },
+    {
+      field: 'phoneNo',
+      method: 'isEmpty',
+      validWhen: false,
+      message: 'Pleave provide a mobile number.'
+    },
+    {
+      field: 'phoneNo',
+      method: 'matches',
+      args: [/^(?:(?:\+|0{0,2})91(\s*\s*)?|[0]?)?[789]\d{9}$/], // [/^(?:(?:\+|0{0,2})91(\s*[\-]\s*)?|[0]?)?[789]\d{9}$/] // args is an optional array of arguements that will be passed to the validation method
+      validWhen: true,
+      message: 'That is not a valid mobile number.'
+    },
+    {
+      field: 'fullName',
+      method: 'isEmpty',
+      args: [{ ignore_whitespace: true }],
+      validWhen: false,
+      message: 'Name is required.'
+    }
+  ]);
+
   state = {
     loading: true,
     shops: [],
-    user: {},
+    user: {
+      fullName: '',
+      email: '',
+      phoneNo: ''
+    },
+    userValidation: this.validator.valid(),
     cart: [],
     orderState: 1, // 1: Show Order Summary, 2: Show User Details. 3: Show Info Modal
     initialCartStateIndex: [],
@@ -93,6 +135,16 @@ class User extends Component {
   };
 
   updateOrderStateHandler = val => {
+    if (this.state.orderState === 2) {
+      const validation = this.validator.validate(this.state.user);
+      this.setState({ userValidation: validation });
+      this.submitted = true;
+
+      if (!validation.isValid) {
+        return;
+      }
+    }
+
     this.setState((prevState, props) => ({
       orderState: prevState.orderState + val
     }));
@@ -130,6 +182,10 @@ class User extends Component {
       return <Spinner />;
     }
 
+    let validation = this.submitted // if the form has been submitted at least once
+      ? this.validator.validate(this.state.user) // then check validity every time we render
+      : this.state.userValidation;
+
     let showPlaceOrderButton = this.state.updatedCartStateIndex
       .map(array => array.reduce((acc, cur) => acc || cur))
       .reduce((acc, cur) => acc || cur);
@@ -158,6 +214,7 @@ class User extends Component {
         <PlaceOrder
           user={this.state.user}
           cart={this.state.cart}
+          validation={validation}
           orderState={this.state.orderState}
           disablePlaceOrderButton={!showPlaceOrderButton}
           updateOrderState={this.updateOrderStateHandler}
