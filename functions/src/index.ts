@@ -15,13 +15,14 @@ export const onOrderCreate = functions.database
 
     const orderData = snapshot.val();
     const emailTo = orderData.user.email;
+    const emailForm = 'bridgemohan@yandex.com';
 
     // Sending Email
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: 'yandex',
       auth: {
-        user: 'anup.blade@gmail.com',
-        pass: 'phantonn'
+        user: emailForm,
+        pass: '!Aworker2#'
       }
     });
 
@@ -71,7 +72,7 @@ export const onOrderCreate = functions.database
     `;
 
     const mailOptions = {
-      from: 'anup.blade@gmail.com', // sender address
+      from: emailForm, // sender address
       to: emailTo, // list of receivers
       subject: `Bridge Mohan - ${shopName.charAt(0).toUpperCase() +
         shopName.slice(1)} Order Confirmation`, // Subject line

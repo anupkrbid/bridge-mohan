@@ -1,0 +1,17 @@
+[debug] [2018-09-12T22:54:49.876Z] ----------------------------------------------------------------------
+[debug] [2018-09-12T22:54:49.878Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2018-09-12T22:54:49.878Z] CLI Version:   4.2.1
+[debug] [2018-09-12T22:54:49.878Z] Platform:      linux
+[debug] [2018-09-12T22:54:49.878Z] Node Version:  v8.11.2
+[debug] [2018-09-12T22:54:49.879Z] Time:          Thu Sep 13 2018 04:24:49 GMT+0530 (DST)
+[debug] [2018-09-12T22:54:49.879Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-09-12T22:54:49.885Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-12T22:54:49.886Z] > authorizing via signed-in user
+[debug] [2018-09-12T22:54:49.887Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-09-12T22:54:49.887Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2018-09-12T22:54:50.268Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-12T22:54:50.320Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/bridge-mohan  
+ 
+[debug] [2018-09-12T22:54:51.721Z] <<< HTTP RESPONSE 200
