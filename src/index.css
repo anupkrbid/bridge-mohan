@@ -8,6 +8,11 @@ body {
   font-family: 'Roboto Slab', serif;
   color: #333;
   font-size: 10px;
+  height: 100%;
+}
+#root,
+.container {
+  height: 100%;
 }
 .flex_container {
   width: 100%;
@@ -21,11 +26,11 @@ body {
 }
 .flex_container .l_cntr {
   width: 15%;
-  background: #2f6940;
+  background: #58ba4b;
 }
 .flex_container .r_cntr {
   width: 15%;
-  background: #bb2030;
+  background: #2066b4;
 }
 .flex_container .text_cntr {
   -moz-box-flex: 1;
@@ -34,6 +39,7 @@ body {
   -ms-flex: 1;
   flex: 1;
   position: relative;
+  background: #fff;
 }
 .logo_wrp {
   width: 100%;
@@ -56,7 +62,7 @@ body {
 .menu_blk h2::after {
   width: 100px;
   height: 3px;
-  background: #2f6940;
+  background: #ff6209;
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -120,7 +126,14 @@ body {
   font-size: 1.75rem;
   border-radius: 3px;
 }
-
+.btn-primary:disabled {
+  background: #757575;
+  border-color: #757575;
+}
+.nav,
+.table {
+  font-size: 16px;
+}
 @media only screen and (max-width: 768px) {
   .container {
     padding: 0;

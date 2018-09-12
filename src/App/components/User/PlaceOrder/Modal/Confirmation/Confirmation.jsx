@@ -40,6 +40,45 @@ class Confirmation extends Component {
   };
 
   render() {
+    const grandTotal = this.props.cart
+      .map(shop => shop.total)
+      .reduce((acc, curr) => curr + acc);
+
+    const orderDetails = this.props.cart
+      .filter(shop => !!shop.products.length)
+      .map(shop => {
+        const productDetail = shop.products.map(product => {
+          return (
+            <div key={product.name} className="row menu_row">
+              <div className="col-7 col-sm-7 col-md-7">
+                <h3 className="menu_ttl_txt">{product.name}</h3>
+              </div>
+              <div className="col-2 col-sm-2 col-md-2">{product.quantity}</div>
+              <div className="col-3 col-sm-3 col-md-3">
+                LMC <b>{product.total}</b>
+              </div>
+            </div>
+          );
+        });
+        return (
+          <section key={shop.shopName} class="menu_blk">
+            <h2>{shop.shopName}</h2>
+            {productDetail}
+            <div className="row menu_row">
+              <div className="col-7 col-sm-7 col-md-7">
+                <h3 className="menu_ttl_txt">
+                  <strong>Sub Total</strong>
+                </h3>
+              </div>
+              <div className="col-2 col-sm-2 col-md-2" />
+              <div className="col-3 col-sm-3 col-md-3">
+                <strong>LMC {shop.total}</strong>
+              </div>
+            </div>
+          </section>
+        );
+      });
+
     return (
       <FakeWrapper>
         <div className="modal-header">
@@ -61,17 +100,37 @@ class Confirmation extends Component {
             <section className="menu_blk user_details">
               <div className="row menu_row">
                 <div className="col-md-12">
-                  <h2>
-                    Please check your email after the page refreshes on submit
-                  </h2>
-                  <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
-                  <pre>
-                    {JSON.stringify(
-                      this.props.cart.filter(shop => !!shop.products.length),
-                      null,
-                      4
-                    )}
-                  </pre>
+                  <div class="alert alert-primary" role="alert">
+                    <h2>
+                      Please check your email after the page refreshes on submit
+                    </h2>
+                  </div>
+
+                  <section class="menu_blk">
+                    <p>
+                      Full Name: <strong>{this.props.user.fullName}</strong>
+                    </p>
+                    <p>
+                      Phone Number: <strong>{this.props.user.phoneNo}</strong>
+                    </p>
+                    <p>
+                      Email Address: <strong>{this.props.user.email}</strong>
+                    </p>
+                  </section>
+                  {orderDetails}
+
+                  <hr />
+                  <div className="row menu_row">
+                    <div className="col-7 col-sm-7 col-md-7">
+                      <h3 className="menu_ttl_txt">
+                        <strong>Grand Total</strong>
+                      </h3>
+                    </div>
+                    <div className="col-2 col-sm-2 col-md-2" />
+                    <div className="col-3 col-sm-3 col-md-3">
+                      <strong>LMC {grandTotal}</strong>
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
