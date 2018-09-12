@@ -24,7 +24,7 @@ const item = props => (
     </div>
     <div className="col-7 col-sm-7 col-md-8">
       <h3 className="menu_ttl_txt">{props.item.name}</h3>
-      <p className="menu_dsc">This is demo text and will be replaced</p>
+      {/* <p className="menu_dsc">This is demo text and will be replaced</p> */}
     </div>
     <div className="col-3 col-sm-3 col-md-3">
       LMC <b>{props.item.price}</b>

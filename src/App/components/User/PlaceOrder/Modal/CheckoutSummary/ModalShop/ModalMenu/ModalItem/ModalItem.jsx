@@ -7,7 +7,7 @@ const modalItem = props => {
     <div className="row menu_row">
       <div className="col-7 col-sm-7 col-md-7">
         <h3 className="menu_ttl_txt">{props.product.name}</h3>
-        <p className="menu_dsc">This is demo text and will be replaced</p>
+        {/* <p className="menu_dsc">This is demo text and will be replaced</p> */}
       </div>
       <div className="col-2 col-sm-2 col-md-2">
         <select
