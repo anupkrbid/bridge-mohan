@@ -6,37 +6,28 @@ import './Confirmation.css';
 import FakeWrapper from '../../../../../hoc/fakeWrapper';
 
 class Confirmation extends Component {
-  constructor() {
-    super();
-    this.ordersRef = firebase
-      .database()
-      .ref()
-      .child('orders');
-
-    // this.ordersRef.on('child_added', snap => {
-    //   window.location.reload();
-    // });
-
-    this.dhabewalaRef = this.ordersRef.child('dhabewala');
-    this.paanwalaRef = this.ordersRef.child('paanwala');
-    this.khilonewalaRef = this.ordersRef.child('khilonewala');
-  }
+  ordersRef = firebase
+    .database()
+    .ref()
+    .child('orders');
 
   saveDataToDBHandler = () => {
+    const newPushKey = this.ordersRef.child(this.props.cart[0].shopName).push()
+      .key;
+
+    var updates = {};
     this.props.cart.forEach(shop => {
-      if (!!shop.products.length) {
-        this[`${shop.shopName.toLowerCase()}Ref`].push({
-          user: this.props.user,
-          orders: shop.products,
-          status: shop.status,
-          total: shop.total
-        });
-      }
+      updates[`${shop.shopName.toLowerCase()}/${newPushKey}`] = {
+        user: this.props.user,
+        orders: shop.products,
+        status: shop.status,
+        total: shop.total
+      };
     });
-    // TODO: Refactor this
-    setTimeout(() => {
+    this.ordersRef.update(updates).then(() => {
+      window.scrollTo(0, 0);
       window.location.reload();
-    }, 1000);
+    });
   };
 
   render() {
