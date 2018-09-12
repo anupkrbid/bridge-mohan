@@ -102,7 +102,8 @@ class Confirmation extends Component {
                 <div className="col-md-12">
                   <div className="alert alert-primary" role="alert">
                     <h2>
-                      Please check your email after the page refreshes on submit
+                      Your order will be placed once the page refreshes on
+                      submit
                     </h2>
                   </div>
 

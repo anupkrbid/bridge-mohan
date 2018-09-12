@@ -96,37 +96,40 @@ class User extends Component {
   };
 
   placeOrderHandler = () => {
-    const cart = this.state.shops.map((shop, shopIndex) => {
-      const products = shop.products
-        .filter(
-          (product, productIndex) =>
-            this.state.updatedCartStateIndex[shopIndex][productIndex]
-        )
-        .map(product => ({
-          ...product,
-          total: product.price,
-          quantity: 1
-        }));
+    const cart = this.state.shops
+      .map((shop, shopIndex) => {
+        const products = shop.products
+          .filter(
+            (product, productIndex) =>
+              this.state.updatedCartStateIndex[shopIndex][productIndex]
+          )
+          .map(product => ({
+            ...product,
+            total: product.price,
+            quantity: 1
+          }));
 
-      if (!products.length) {
+        if (!products.length) {
+          return {
+            shopName: shop.name,
+            products: [],
+            total: 0,
+            status: -1
+          };
+        }
+
+        const total = products
+          .map(product => product.total)
+          .reduce((accumulator, currentValue) => accumulator + currentValue);
+
         return {
           shopName: shop.name,
-          products: [],
-          total: 0
+          products: products,
+          total: total,
+          status: -1 // -1: Pemding. 0: Cancelled, 1: Confirmed
         };
-      }
-
-      const total = products
-        .map(product => product.total)
-        .reduce((accumulator, currentValue) => accumulator + currentValue);
-
-      return {
-        shopName: shop.name,
-        products: products,
-        total: total,
-        status: -1 // -1: Pemding. 0: Cancelled, 1: Confirmed
-      };
-    });
+      })
+      .filter(shops => !!shops.products.length);
 
     this.setState({
       cart: cart,
