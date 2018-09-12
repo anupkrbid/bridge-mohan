@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import Admin from './containers/Admin/Admin';
 import User from './containers/User/User';
@@ -10,7 +10,17 @@ class App extends Component {
     return (
       <Switch>
         <Route path="/" exact component={User} />
-        <Route path="/admin" component={Admin} />
+        <Route
+          path="/admin"
+          render={() => {
+            const pass = window.prompt('Password for Admin Access');
+            if (pass === 'toor') {
+              return <Admin />;
+            }
+            return <Redirect to="/" />;
+          }}
+        />
+        <Redirect to="/" />
       </Switch>
     );
   }
