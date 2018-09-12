@@ -25,10 +25,7 @@ const userDetails = props => (
           <div className="row menu_row">
             <div className="col-md-12">
               <form>
-                <div
-                  className={`form-group ${props.validation.fullName
-                    .isInvalid && 'has-error'}`}
-                >
+                <div className="form-group">
                   <label htmlFor="name">Full Name</label>
                   <input
                     type="text"
@@ -37,19 +34,17 @@ const userDetails = props => (
                       props.updateUser(event);
                     }}
                     name="fullName"
-                    className="form-control"
+                    className={`form-control ${props.validation.fullName
+                      .isInvalid && 'is-invalid'}`}
                     id="name"
                     aria-describedby="emailHelp"
                     placeholder="eg: Bridge Mohan"
                   />
-                  <span className="help-block">
+                  <span className="invalid-feedback">
                     {props.validation.fullName.message}
                   </span>
                 </div>
-                <div
-                  className={`form-group ${props.validation.phoneNo.isInvalid &&
-                    'has-error'}`}
-                >
+                <div className="form-group">
                   <label htmlFor="pno">Phone Number</label>
                   <input
                     type="text"
@@ -58,18 +53,16 @@ const userDetails = props => (
                       props.updateUser(event);
                     }}
                     name="phoneNo"
-                    className="form-control"
+                    className={`form-control ${props.validation.fullName
+                      .isInvalid && 'is-invalid'}`}
                     id="pno"
                     placeholder="eg: +919845623698"
                   />
-                  <span className="help-block">
+                  <span className="invalid-feedback">
                     {props.validation.phoneNo.message}
                   </span>
                 </div>
-                <div
-                  className={`form-group ${props.validation.email.isInvalid &&
-                    'has-error'}`}
-                >
+                <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <input
                     type="text"
@@ -78,11 +71,12 @@ const userDetails = props => (
                       props.updateUser(event);
                     }}
                     name="email"
-                    className="form-control"
+                    className={`form-control ${props.validation.fullName
+                      .isInvalid && 'is-invalid'}`}
                     id="email"
                     placeholder="eg: bridge.mohan@learningmate.com"
                   />
-                  <span className="help-block">
+                  <span className="invalid-feedback">
                     {props.validation.email.message}
                   </span>
                 </div>
