@@ -24,7 +24,13 @@ const modal = props => {
       />
     );
   } else if (props.orderState === 3) {
-    modalContent = <ConformOrder cart={props.cart} user={props.user} />;
+    modalContent = (
+      <ConformOrder
+        maxLimit={props.maxLimit}
+        cart={props.cart}
+        user={props.user}
+      />
+    );
   }
 
   return (

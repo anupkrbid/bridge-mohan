@@ -20,6 +20,7 @@ const placeOrder = props => (
     <Modal
       user={props.user}
       cart={props.cart}
+      maxLimit={props.maxLimit}
       validation={props.validation}
       orderState={props.orderState}
       updateOrderState={props.updateOrderState}
